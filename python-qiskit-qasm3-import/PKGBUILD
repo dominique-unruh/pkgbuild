@@ -1,0 +1,25 @@
+pkgbase='python-qiskit-qasm3-import'
+pkgname=('python-qiskit-qasm3-import')
+_module='qiskit-qasm3-import'
+_src_folder='qiskit_qasm3_import-0.5.0'
+pkgver='0.5.0'
+pkgrel=1
+pkgdesc="Importer for parsing OpenQASM 3 strings into Qiskit circuits"
+url="https://github.com/Qiskit/qiskit-qasm3-import"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('unknown')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/69/40/e6ea9dc59d50bbf5ca61e695cd986ded1386ab65f6bfb0181144555d7c1f/qiskit_qasm3_import-0.5.0.tar.gz")
+sha256sums=('d8d39ac176eaa7f2414dab897ff449ea1e5d854230b262b21724d138939a6476')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    depends+=()
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}

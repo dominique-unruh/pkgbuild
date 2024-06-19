@@ -1,0 +1,16 @@
+pkgbase = python-qiskit-qasm3-import
+	pkgdesc = Importer for parsing OpenQASM 3 strings into Qiskit circuits
+	pkgver = 0.5.0
+	pkgrel = 1
+	url = https://github.com/Qiskit/qiskit-qasm3-import
+	arch = any
+	license = unknown
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	depends = python
+	source = https://files.pythonhosted.org/packages/69/40/e6ea9dc59d50bbf5ca61e695cd986ded1386ab65f6bfb0181144555d7c1f/qiskit_qasm3_import-0.5.0.tar.gz
+	sha256sums = d8d39ac176eaa7f2414dab897ff449ea1e5d854230b262b21724d138939a6476
+
+pkgname = python-qiskit-qasm3-import
+	depends = python
