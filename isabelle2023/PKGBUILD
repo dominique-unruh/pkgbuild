@@ -1,0 +1,24 @@
+pkgname=isabelle2023
+pkgver=2023
+pkgrel=1
+pkgdesc="Isabelle theorem prover"
+arch=('i686' 'x86_64')
+url=https://isabelle.in.tum.de/index.html
+license=('custom:mixed-licenses')
+groups=('science')
+if test "$CARCH" == x86_64; then
+	optdepends+=('lib32-glibc: for improved performance of Poly/ML on x86_64 machines'
+               'lib32-gcc-libs: for improved performance of Poly/ML on x86_64 machines')
+fi
+optdepends=('texlive-core: document preparation')
+source=("https://isabelle.in.tum.de/website-Isabelle${pkgver//_/-}/dist/Isabelle${pkgver//_/-}_linux.tar.gz")
+sha256sums=('1a8e190ac0f3e6027bb961b954bacd24e75d30f5f5f06f7d14069da57e7746a8')
+options=(!strip !purge libtool staticlibs !debug !zipman) # Try to disable all postprocessing by makepkg
+targetdir="/opt/Isabelle${pkgver//_/-}"
+package() {
+    mkdir -p "$pkgdir$targetdir"
+    cp -rp "$srcdir/Isabelle${pkgver//_/-}"/* "$pkgdir$targetdir"
+    "$pkgdir$targetdir/bin/isabelle" install -d "$targetdir" "$pkgdir/usr/bin"
+    echo "Isabelle is distributed for free under a conglomerate of open-source licenses, but the main code-base is subject to BSD-style regulations. See $targetdir and subdirectories for all relevant license files" > LICENSE
+    install -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

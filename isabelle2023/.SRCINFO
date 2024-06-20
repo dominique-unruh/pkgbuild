@@ -1,0 +1,20 @@
+pkgbase = isabelle2023
+	pkgdesc = Isabelle theorem prover
+	pkgver = 2023
+	pkgrel = 1
+	url = https://isabelle.in.tum.de/index.html
+	arch = i686
+	arch = x86_64
+	groups = science
+	license = custom:mixed-licenses
+	optdepends = texlive-core: document preparation
+	options = !strip
+	options = !purge
+	options = libtool
+	options = staticlibs
+	options = !debug
+	options = !zipman
+	source = https://isabelle.in.tum.de/website-Isabelle2023/dist/Isabelle2023_linux.tar.gz
+	sha256sums = 603aaaf8abea36597af3b0651d2c162a86c0a0dd4420766f47e5724039639267
+
+pkgname = isabelle2023
