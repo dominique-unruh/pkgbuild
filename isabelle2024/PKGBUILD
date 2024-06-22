@@ -1,6 +1,6 @@
 pkgname=isabelle2024
 pkgver=2024
-pkgrel=1
+pkgrel=3
 pkgdesc="Isabelle theorem prover"
 arch=('i686' 'x86_64')
 url=https://isabelle.in.tum.de/index.html
@@ -18,7 +18,8 @@ targetdir="/opt/Isabelle${pkgver//_/-}"
 package() {
     mkdir -p "$pkgdir$targetdir"
     cp -rp "$srcdir/Isabelle${pkgver//_/-}"/* "$pkgdir$targetdir"
-    "$pkgdir$targetdir/bin/isabelle" install -d "$targetdir" "$pkgdir/usr/bin"
     echo "Isabelle is distributed for free under a conglomerate of open-source licenses, but the main code-base is subject to BSD-style regulations. See $targetdir and subdirectories for all relevant license files" > LICENSE
     install -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    mkdir -p "$pkgdir/usr/bin"
+    ln -s "$targetdir/bin/isabelle" "$pkgdir/usr/bin/isabelle${pkgver//_/-}"
 }
