@@ -1,0 +1,25 @@
+pkgbase='python-openqasm3'
+pkgname=('python-openqasm3')
+_module='openqasm3'
+_src_folder='openqasm3-0.5.0'
+pkgver='0.5.0'
+pkgrel=1
+pkgdesc="Reference OpenQASM AST in Python"
+url="https://github.com/Qiskit/openqasm"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('custom:Apache Software License')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/c7/f1/c63ef1778a387a3377f2a9ca6be497303745ee634e5b9f3cfd0776f40d76/openqasm3-0.5.0.tar.gz")
+sha256sums=('bf8bf4ed098393447e552eaea18b0a34a2429d228477683d6b579348bc17bfc8')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    depends+=()
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}
